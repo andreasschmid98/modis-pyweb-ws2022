@@ -3,10 +3,14 @@ from django.db import models
 
 
 class User(AbstractUser):
+    LECTURER = 1
+    STUDENT = 2
+    ADMIN = 3
+
     USER_TYPE_CHOICES = (
-        (1, 'lecturer'),
-        (2, 'student'),
-        (3, 'admin'),
+        (LECTURER, 'LECTURER'),
+        (STUDENT, 'STUDENT'),
+        (ADMIN, 'ADMIN'),
     )
 
-    user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES, default=1)
+    user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES)
