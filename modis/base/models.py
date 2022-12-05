@@ -1,9 +1,11 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
 
-#get the custom user model
+# get the custom user model
 User = get_user_model()
+
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
@@ -71,3 +73,17 @@ class Module(models.Model):
 
     def __str__(self):
         return self.title
+
+    @staticmethod
+    def filter_modules_by_search_query(search_query):
+        return Module.objects.filter(
+            Q(title__icontains=search_query) |
+            Q(content__icontains=search_query) |
+            Q(learning_objective__icontains=search_query) |
+            Q(lecturer__last_name__icontains=search_query) |
+            Q(lecturer__first_name__icontains=search_query) |
+            Q(semesters__type__icontains=search_query) |
+            Q(graduate_programs__title__icontains=search_query) |
+            Q(specialisation_tracks__title__icontains=search_query) |
+            Q(credits=(int(search_query) if search_query.isdigit() else False))
+        ).distinct() if search_query is not '' else Module.objects.none()
