@@ -86,4 +86,4 @@ class Module(models.Model):
             Q(graduate_programs__title__icontains=search_query) |
             Q(specialisation_tracks__title__icontains=search_query) |
             Q(credits=(int(search_query) if search_query.isdigit() else False))
-        ).distinct() if search_query is not '' else Module.objects.none()
+        ).distinct()
