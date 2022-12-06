@@ -7,12 +7,17 @@
     <p><a href ="{% url 'logout' %}">Logout</a></p>
     <div>
         <h5>{{ module_count }} {% if module_count == 1 %} Modul {% else %} Module {% endif %} gefunden.</h5>
-        <a href ="{% url 'create-module' %}">Modul hinzufügen</a>
+        {% if user.user_type != user.STUDENT  %}
+            <a href ="{% url 'create-module' %}">Modul hinzufügen</a>
+        {% endif %}
+
     <hr>
     <div>
         {% for module in modules %}
-            <a href="{% url 'update-module' module.id %}">Bearbeiten</a>
-            <a href="{% url 'delete-module' module.id %}">Löschen</a>
+            {% if user.user_type == user.ADMIN or module.lecturer.user == user  %}
+                <a href="{% url 'update-module' module.id %}">Bearbeiten</a>
+                <a href="{% url 'delete-module' module.id %}">Löschen</a>
+            {% endif %}
             <div>
                 <h5>{{ module.id }} --- <a href = "{% url 'module' module.id %}">{{ module.title }} </a></h5>
                 <hr>
