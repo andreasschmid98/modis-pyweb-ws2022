@@ -24,12 +24,12 @@ def module(request, primary_key):
 
 @login_required
 def create_module(request):
-    form = ModuleForm()
+    form = ModuleForm(**{'user': request.user})
 
     if request.method == 'POST':
         form = ModuleForm(request.POST)
         if form.is_valid():
-            form.save()
+            form.save(user=request.user)
             return redirect('home')
 
     context = {'form': form}

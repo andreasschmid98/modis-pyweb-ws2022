@@ -60,7 +60,7 @@ class Module(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField(null=True, blank=True)
     learning_objective = models.TextField(null=True, blank=True)
-    lecturer = models.ForeignKey(Lecturer, on_delete=models.SET_NULL, null=True)
+    lecturer = models.ForeignKey(Lecturer, on_delete=models.SET_NULL, null=True, blank=True)
     semesters = models.ManyToManyField(Semester)
     graduate_programs = models.ManyToManyField(GraduateProgram)
     specialisation_tracks = models.ManyToManyField(SpecialisationTrack)
