@@ -24,10 +24,10 @@ def module(request, primary_key):
 
 @login_required
 def create_module(request):
-    form = ModuleForm(**{'user': request.user})
+    form = ModuleForm(user=request.user)
 
     if request.method == 'POST':
-        form = ModuleForm(request.POST)
+        form = ModuleForm(request.POST, user=request.user)
         if form.is_valid():
             form.save(user=request.user)
             return redirect('home')
@@ -39,10 +39,10 @@ def create_module(request):
 @login_required
 def update_module(request, primary_key):
     module = Module.objects.get(id=primary_key)
-    form = ModuleForm(instance=module)
+    form = ModuleForm(instance=module, user=request.user)
 
     if request.method == 'POST':
-        form = ModuleForm(request.POST, instance=module)
+        form = ModuleForm(request.POST, instance=module, user=request.user)
         if form.is_valid():
             form.save()
             return redirect('home')
