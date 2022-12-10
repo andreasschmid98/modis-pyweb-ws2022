@@ -17,6 +17,8 @@
             {% if user.user_type == user.ADMIN or module.lecturer.user == user  %}
                 <a href="{% url 'update-module' module.id %}">Bearbeiten</a>
                 <a href="{% url 'delete-module' module.id %}">Löschen</a>
+            {% else %}
+                <a href="{% url 'add-fav' module.id %}">Hinzufügen</a>
             {% endif %}
             <div>
                 <h5>{{ module.id }} --- <a href = "{% url 'module' module.id %}">{{ module.title }} </a></h5>

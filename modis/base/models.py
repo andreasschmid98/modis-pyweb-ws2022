@@ -7,15 +7,6 @@ from django.utils.translation import gettext_lazy as _
 User = get_user_model()
 
 
-class Student(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return f'{self.first_name} {self.last_name}'
-
-
 class Lecturer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     first_name = models.CharField(max_length=50)
@@ -87,3 +78,13 @@ class Module(models.Model):
             Q(specialisation_tracks__title__icontains=search_query) |
             Q(credits=(int(search_query) if search_query.isdigit() else False))
         ).distinct()
+
+
+class Student(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    favourites = models.ManyToManyField(Module, null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'

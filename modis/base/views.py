@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from .models import Module
+from .models import Module, Student
 from .forms import ModuleForm
 
 
@@ -61,3 +61,11 @@ def delete_module(request, primary_key):
 
     context = {'object': module}
     return render(request, 'delete.html', context)
+
+
+@login_required()
+def add_to_favourites(request, module_id):
+    module = Module.objects.get(id=module_id)
+    student = Student.objects.get(user=request.user)
+    student.favourites.add(module)
+    return redirect('home')
