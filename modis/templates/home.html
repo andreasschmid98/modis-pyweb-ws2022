@@ -19,7 +19,11 @@
                 <a href="{% url 'delete-module' module.id %}">Löschen</a>
             {% endif %}
             {% if user.user_type == user.STUDENT %}
-                <a href="{% url 'add-fav' module.id %}">Hinzufügen</a>
+                {% if module in student.favourites.all %}
+                    <a href="{% url 'toggle-fav' module.id %}">Entfernen</a>
+                {% else %}
+                    <a href="{% url 'toggle-fav' module.id %}">Hinzufügen</a>
+                {% endif %}
             {% endif %}
             <div>
                 <h5>{{ module.id }} --- <a href = "{% url 'module' module.id %}">{{ module.title }} </a></h5>

@@ -7,11 +7,22 @@ from .forms import ModuleForm
 @login_required
 def home(request):
     search_query = request.GET.get('q') if request.GET.get('q') is not None else ''
+
     modules = Module.filter_modules_by_search_query(search_query)
     module_count = modules.count()
 
     context = {'modules': modules,
-               'module_count': module_count}
+               'module_count': module_count
+               }
+
+    try:
+        student = Student.objects.get(user=request.user)
+    except:
+        student = None
+
+    if student is not None:
+        context['student'] = student
+
     return render(request, 'home.html', context)
 
 
@@ -64,8 +75,12 @@ def delete_module(request, primary_key):
 
 
 @login_required()
-def add_to_favourites(request, module_id):
+def toggle_favourites(request, module_id):
     module = Module.objects.get(id=module_id)
     student = Student.objects.get(user=request.user)
-    student.favourites.add(module)
+    if module in student.favourites.all():
+        student.favourites.remove(module)
+    else:
+        student.favourites.add(module)
     return redirect('home')
+
