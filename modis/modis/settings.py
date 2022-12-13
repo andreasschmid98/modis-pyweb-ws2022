@@ -128,4 +128,4 @@ AUTH_USER_MODEL = 'accounts.User'
 LOGIN_REDIRECT_URL = '/'
 
 # Logout redirect
-LOGOUT_REDIRECT_URL = '/logout'
+LOGOUT_REDIRECT_URL = '/accounts/login'

@@ -85,6 +85,7 @@ def toggle_favourites(request, module_id):
     return redirect(request. META. get('HTTP_REFERER', '/'))
 
 
+@login_required()
 def favourites(request):
     favourites = Student.objects.get(user=request.user).favourites.all()
 
