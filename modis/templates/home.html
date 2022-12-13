@@ -4,7 +4,10 @@
 
 <div class="home-container">
 
-    <p><a href ="{% url 'logout' %}">Logout</a></p>
+    <form action="{% url 'home' %}">
+        <input type="text" name="q" placeholder="Nach Modulen suchen..."/>
+    </form>
+
     <div>
         <h5>{{ module_count }} {% if module_count == 1 %} Modul {% else %} Module {% endif %} gefunden.</h5>
         {% if user.user_type != user.STUDENT  %}

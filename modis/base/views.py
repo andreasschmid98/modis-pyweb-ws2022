@@ -82,5 +82,11 @@ def toggle_favourites(request, module_id):
         student.favourites.remove(module)
     else:
         student.favourites.add(module)
-    return redirect('home')
+    return redirect(request. META. get('HTTP_REFERER', '/'))
 
+
+def favourites(request):
+    favourites = Student.objects.get(user=request.user).favourites.all()
+
+    context = {'favourites': favourites}
+    return render(request, 'favourites.html', context)

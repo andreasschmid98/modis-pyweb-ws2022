@@ -8,4 +8,5 @@ urlpatterns = [
     path('update-module/<str:primary_key>/', views.update_module, name='update-module'),
     path('delete-module/<str:primary_key>/', views.delete_module, name='delete-module'),
     path('fav/<str:module_id>/', views.toggle_favourites, name='toggle-fav'),
+    path('favourites/', views.favourites, name='favourites'),
 ]
