@@ -1,0 +1,40 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="home-container">
+    <form action="{% url 'home' %}">
+        <input type="text" name="q" placeholder="Nach Modulen suchen..."/>
+    </form>
+
+    <div>
+        <h5>{{ module_count }} {% if module_count == 1 %} Modul {% else %} Module {% endif %} gefunden.</h5>
+        {% if user.user_type != user.STUDENT  %}
+            <a href ="{% url 'create-module' %}">Modul hinzufügen</a>
+        {% endif %}
+
+    <hr>
+    <div>
+        {% for module in modules %}
+            {% if user.user_type == user.ADMIN or module.lecturer.user == user  %}
+                <a href="{% url 'update-module' module.id %}">Bearbeiten</a>
+                <a href="{% url 'delete-module' module.id %}">Löschen</a>
+            {% endif %}
+            {% if user.user_type == user.STUDENT %}
+                {% if module in student.favourites.all %}
+                    <a href="{% url 'toggle-fav' module.id %}">Entfernen</a>
+                {% else %}
+                    <a href="{% url 'toggle-fav' module.id %}">Hinzufügen</a>
+                {% endif %}
+            {% endif %}
+            <div>
+                <h5>{{ module.id }} --- <a href = "{% url 'module' module.id %}">{{ module.title }} </a></h5>
+                <hr>
+            </div>
+        {% endfor %}
+    </div>
+    </div>
+</div>
+{% endblock %}
+
+

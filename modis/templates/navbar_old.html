@@ -1,0 +1,15 @@
+<a href="/">
+    <h1>modis - Modul Informationssystem</h1>
+</a>
+
+
+<span><a href ="{% url 'logout' %}">Logout</a></span>
+
+{% if user.user_type == user.STUDENT %}
+    <a href="{% url 'favourites' %}">Favoriten</a>
+{% endif %}
+
+<hr>
+
+
+
