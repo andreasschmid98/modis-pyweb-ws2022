@@ -18,11 +18,11 @@ class Lecturer(models.Model):
 
 class GraduateProgram(models.Model):
     class Degree(models.TextChoices):
-        BACHELOR = 'B', _('Bachelor')
-        MASTER = 'M', _('Master')
+        BACHELOR = 'Bachelor'
+        MASTER = 'Master'
 
     title = models.CharField(max_length=200)
-    degree = models.CharField(max_length=2, choices=Degree.choices)
+    degree = models.CharField(max_length=20, choices=Degree.choices)
 
     def __str__(self):
         return f'{self.title} ({self.degree})'
@@ -38,10 +38,10 @@ class SpecialisationTrack(models.Model):
 
 class Semester(models.Model):
     class Type(models.TextChoices):
-        WINTER = 'WS', _('Winter-Semester')
-        SUMMER = 'SS', _('Sommer-Semester')
+        WINTER = 'Wintersemester'
+        SUMMER = 'Sommersemester'
 
-    type = models.CharField(max_length=2, choices=Type.choices)
+    type = models.CharField(max_length=20, choices=Type.choices)
 
     def __str__(self):
         return self.type
