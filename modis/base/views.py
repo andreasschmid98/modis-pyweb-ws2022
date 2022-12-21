@@ -29,7 +29,17 @@ def home(request):
 @login_required
 def module(request, primary_key):
     module = Module.objects.get(id=primary_key)
+
     context = {'module': module}
+
+    try:
+        student = Student.objects.get(user=request.user)
+    except:
+        student = None
+
+    if student is not None:
+        context['student'] = student
+
     return render(request, 'module.html', context)
 
 
