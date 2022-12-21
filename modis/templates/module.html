@@ -64,18 +64,18 @@
                     </div>
                 </div>
                 <div class="row mx-5 pt-4 justify-content-end">
-                {% if user.user_type == user.STUDENT %}
+                    {% if user.user_type == user.STUDENT %}
                         {% if module in student.favourites.all %}
                             <a class="btn btn-lg btn-danger" href="{% url 'toggle-fav' module.id %}">Entfernen</a>
                         {% else %}
                             <a class="btn btn-lg btn-success"
                                href="{% url 'toggle-fav' module.id %}">Hinzufügen</a>
                         {% endif %}
-                {% endif %}
-                {% if user.user_type == user.ADMIN or module.lecturer.user == user %}
-                                            <a class="btn btn-primary" href="{% url 'update-module' module.id %}">Bearbeiten</a>
-                                            <a class="btn btn-danger" href="{% url 'delete-module' module.id %}">Löschen</a>
-                                        {% endif %}
+                    {% endif %}
+                    {% if user.user_type == user.ADMIN or module.lecturer.user == user %}
+                        <a class="btn btn-primary" href="{% url 'update-module' module.id %}">Bearbeiten</a>
+                        <a class="btn btn-danger" href="{% url 'delete-module' module.id %}">Löschen</a>
+                    {% endif %}
                 </div>
             </div>
 
