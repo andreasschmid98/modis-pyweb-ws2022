@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models import Q
+import pandas as pd
 
 # get the custom user model
 User = get_user_model()
@@ -65,7 +66,7 @@ class Module(models.Model):
         return self.title
 
     @staticmethod
-    def filter_modules_by_search_query(search_query):
+    def find_modules_by_search_query(search_query):
         return Module.objects.filter(
             Q(title__icontains=search_query) |
             Q(content__icontains=search_query) |
@@ -83,6 +84,36 @@ class Module(models.Model):
         if direction == 'desc':
             return modules.order_by('-title').values()
         return modules.order_by('title').values()
+
+
+    @staticmethod
+    def filter_modules_by_semester(semester):
+        semester = Semester.objects.filter(type=semester)
+        return Module.objects.filter(semesters__in=semester)
+
+    @staticmethod
+    def filter_modules_by_graduate_program(graduate_program):
+        one = graduate_program.replace('(', '')
+        two = one.replace(')','')
+        title, degree = two.rsplit(' ', 1)
+
+        graduate_program = GraduateProgram.objects.filter(title=title, degree=degree)
+        return Module.objects.filter(graduate_programs__in=graduate_program)
+
+    @staticmethod
+    def filter_modules_by_specialisation_track(specialisation_track):
+        specialisation_track = SpecialisationTrack.objects.filter(title=specialisation_track)
+        return Module.objects.filter(specialisation_tracks__in=specialisation_track)
+
+    @staticmethod
+    def filter_modules_by_credits(credits):
+        return Module.objects.filter(credits=credits)
+
+    @staticmethod
+    def filter_modules_by_lecturer(lecturer):
+        first_name, last_name = lecturer.split(' ')
+        lecturer = Lecturer.objects.filter(first_name=first_name, last_name=last_name)
+        return Module.objects.filter(lecturer__in=lecturer)
 
 
 class Student(models.Model):
