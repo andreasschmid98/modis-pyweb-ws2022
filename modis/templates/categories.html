@@ -2,14 +2,15 @@
 <ol class="list-group ">
     <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-            <a class="fw-bold link-dark" href="{% url 'home' %}">Alle</a>
+            <a class="fw-bold link-dark text-decoration-none" href="{% url 'home' %}" >Alle</a>
         </div>
     </li>
     <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
             <div class="fw-bold">Semester</div>
             {% for semester in semesters %}
-                <a class="link-dark" href="{% url 'filter' %}?semester={{ semester.type }}" style="margin-left:1em">{{ semester }}</a> <br/>
+                <a class="link-dark text-decoration-none" href="{% url 'filter' %}?semester={{ semester.type }}"
+                   style="margin-left:1em">{{ semester }}</a> <br/>
             {% endfor %}
         </div>
     </li>
@@ -17,10 +18,12 @@
         <div class="ms-2 me-auto">
             <div class="fw-bold">Studiengang</div>
             {% for program in graduate_programs %}
-                <a class="link-dark" href="{% url 'filter' %}?program={{ program }}" style="margin-left:1em">{{ program }}</a> <br/>
+                <a class="link-dark text-decoration-none" href="{% url 'filter' %}?program={{ program }}"
+                   style="margin-left:1em">{{ program }}</a> <br/>
                 {% for track in specialisation_tracks %}
                     {% if track.graduate_program == program %}
-                        <a class="link-dark" href="{% url 'filter' %}?track={{ track }}" style="margin-left:2em">{{ track }}</a> <br/>
+                        <a class="link-dark text-decoration-none" href="{% url 'filter' %}?track={{ track }}"
+                           style="margin-left:2em">{{ track }}</a> <br/>
                     {% endif %}
                 {% endfor %}
             {% endfor %}
@@ -30,7 +33,8 @@
         <div class="ms-2 me-auto">
             <div class="fw-bold">Credits</div>
             {% for credit in credits %}
-                <a class="link-dark" href="{% url 'filter' %}?credits={{ credit }}" style="margin-left:1em">{{ credit }}</a> <br/>
+                <a class="link-dark text-decoration-none" href="{% url 'filter' %}?credits={{ credit }}"
+                   style="margin-left:1em">{{ credit }}</a> <br/>
             {% endfor %}
         </div>
     </li>
@@ -38,7 +42,8 @@
         <div class="ms-2 me-auto">
             <div class="fw-bold">Dozent</div>
             {% for lecturer in lecturers %}
-                <a class="link-dark" href="{% url 'filter' %}?lecturer={{ lecturer }}" style="margin-left:1em">{{ lecturer }}</a> <br/>
+                <a class="link-dark text-decoration-none" href="{% url 'filter' %}?lecturer={{ lecturer }}"
+                   style="margin-left:1em">{{ lecturer }}</a> <br/>
             {% endfor %}
         </div>
     </li>

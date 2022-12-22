@@ -66,7 +66,13 @@ class Module(models.Model):
         return self.title
 
     @staticmethod
-    def find_modules_by_search_query(search_query):
+    def sort_modules_by_title(modules, direction):
+        if direction == 'desc':
+            return modules.order_by('-title').values()
+        return modules.order_by('title').values()
+
+    @staticmethod
+    def filter_modules_by_search_query(search_query):
         return Module.objects.filter(
             Q(title__icontains=search_query) |
             Q(content__icontains=search_query) |
@@ -79,39 +85,31 @@ class Module(models.Model):
             Q(credits=(int(search_query) if search_query.isdigit() else False))
         ).distinct()
 
-    @staticmethod
-    def sort_modules_by_title(modules, direction):
-        if direction == 'desc':
-            return modules.order_by('-title').values()
-        return modules.order_by('title').values()
-
 
     @staticmethod
-    def filter_modules_by_semester(semester):
-        semester = Semester.objects.filter(type=semester)
+    def filter_modules_by_semester(search_query):
+        semester = Semester.objects.filter(type=search_query)
         return Module.objects.filter(semesters__in=semester)
 
     @staticmethod
-    def filter_modules_by_graduate_program(graduate_program):
-        one = graduate_program.replace('(', '')
-        two = one.replace(')','')
-        title, degree = two.rsplit(' ', 1)
-
+    def filter_modules_by_graduate_program(search_query):
+        # split search_query into title and degree
+        title, degree = search_query.replace('(', '').replace(')','').rsplit(' ', 1)
         graduate_program = GraduateProgram.objects.filter(title=title, degree=degree)
         return Module.objects.filter(graduate_programs__in=graduate_program)
 
     @staticmethod
-    def filter_modules_by_specialisation_track(specialisation_track):
-        specialisation_track = SpecialisationTrack.objects.filter(title=specialisation_track)
+    def filter_modules_by_specialisation_track(search_query):
+        specialisation_track = SpecialisationTrack.objects.filter(title=search_query)
         return Module.objects.filter(specialisation_tracks__in=specialisation_track)
 
     @staticmethod
-    def filter_modules_by_credits(credits):
-        return Module.objects.filter(credits=credits)
+    def filter_modules_by_credits(search_query):
+        return Module.objects.filter(credits=search_query)
 
     @staticmethod
-    def filter_modules_by_lecturer(lecturer):
-        first_name, last_name = lecturer.split(' ')
+    def filter_modules_by_lecturer(search_query):
+        first_name, last_name = search_query.split(' ')
         lecturer = Lecturer.objects.filter(first_name=first_name, last_name=last_name)
         return Module.objects.filter(lecturer__in=lecturer)
 

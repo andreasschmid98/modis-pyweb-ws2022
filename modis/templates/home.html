@@ -9,7 +9,7 @@
             </div>
             <div class="col-4 justify-content-end">
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button"
                             data-bs-toggle="dropdown" aria-expanded="false" action="{% url 'home' %}">
                         Sortieren
                     </button>
@@ -36,9 +36,9 @@
             </div>
         </div>
         <div class="row">
-        <div class="col-sm-auto">
-            {% include 'categories.html' %}
-        </div>
+            <div class="col-sm-auto">
+                {% include 'categories.html' %}
+            </div>
             {% if module_count >= 1 %}
                 <div class="col-8">
                     <div class="card shadow-sm">
@@ -79,9 +79,11 @@
 
                 </div>
             {% else %}
-                <div class="alert alert-warning pt-2" role="alert">
-                    <h4 class="alert-heading">Keine Module gefunden</h4>
-                    <p>Es wurden leider keine Module zu diesem Suchbegriff gefunden. Bitte erneut versuchen!</p>
+                <div class="col-sm-auto">
+                    <div class="alert alert-warning pt-2" role="alert">
+                        <h4 class="alert-heading">Keine Module gefunden</h4>
+                        <p>Es wurden leider keine Module zu diesem Suchbegriff gefunden. Bitte erneut versuchen!</p>
+                    </div>
                 </div>
             {% endif %}
         </div>

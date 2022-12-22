@@ -10,7 +10,7 @@ modules = Module.objects.all()
 def home(request):
     global modules
     search_query = request.GET.get('q') if request.GET.get('q') is not None else ''
-    modules = Module.find_modules_by_search_query(search_query)
+    modules = Module.filter_modules_by_search_query(search_query)
     semesters = Semester.objects.all()
 
     context = get_context_for_home(request)
