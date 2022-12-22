@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models import Q
-from django.utils.translation import gettext_lazy as _
 
 # get the custom user model
 User = get_user_model()
@@ -78,6 +77,12 @@ class Module(models.Model):
             Q(specialisation_tracks__title__icontains=search_query) |
             Q(credits=(int(search_query) if search_query.isdigit() else False))
         ).distinct()
+
+    @staticmethod
+    def sort_modules_by_title(modules, direction=None):
+        if direction == 'desc':
+            return modules.order_by('-title').values()
+        return modules.order_by('title').values()
 
 
 class Student(models.Model):
