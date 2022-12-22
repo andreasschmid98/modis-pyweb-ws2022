@@ -79,7 +79,7 @@ class Module(models.Model):
         ).distinct()
 
     @staticmethod
-    def sort_modules_by_title(modules, direction=None):
+    def sort_modules_by_title(modules, direction):
         if direction == 'desc':
             return modules.order_by('-title').values()
         return modules.order_by('title').values()

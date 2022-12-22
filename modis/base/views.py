@@ -3,20 +3,17 @@ from django.shortcuts import render, redirect
 from .models import Module, Student
 from .forms import ModuleForm
 
-SORTING_DIRECTION = 'asc'
+
+modules = Module.objects.all()
 
 @login_required
 def home(request):
-
+    global modules
     search_query = request.GET.get('q') if request.GET.get('q') is not None else ''
-
     modules = Module.filter_modules_by_search_query(search_query)
-    modules = Module.sort_modules_by_title(modules, SORTING_DIRECTION)
-
-    module_count = modules.count()
 
     context = {'modules': modules,
-               'module_count': module_count
+               'module_count': modules.count()
                }
 
     try:
@@ -109,8 +106,27 @@ def favourites(request):
 
 @login_required()
 def set_sorting_direction(request, direction):
-    global SORTING_DIRECTION
-    SORTING_DIRECTION = direction
-    return home(request)
+    global modules
+    modules = Module.sort_modules_by_title(modules, direction)
+
+    context = {'modules': modules,
+               'module_count': modules.count()
+               }
+
+    try:
+        student = Student.objects.get(user=request.user)
+    except:
+        student = None
+
+    if student is not None:
+        context['student'] = student
+
+    return render(request, 'home.html', context)
+
+
+
+
+
+
 
 
