@@ -11,8 +11,6 @@ def home(request):
     global modules
     search_query = request.GET.get('q') if request.GET.get('q') is not None else ''
     modules = Module.filter_modules_by_search_query(search_query)
-    semesters = Semester.objects.all()
-
     context = get_context_for_home(request)
     return render(request, 'home.html', context)
 
@@ -38,7 +36,8 @@ def create_module(request):
     if request.method == 'POST':
         form = ModuleForm(request.POST, user=request.user)
         if form.is_valid():
-            form.save(user=request.user)
+            form.save(user=request.user, commit=False)
+            form.save_m2m()
             return redirect('home')
 
     context = {'form': form}
@@ -53,10 +52,12 @@ def update_module(request, primary_key):
     if request.method == 'POST':
         form = ModuleForm(request.POST, instance=module, user=request.user)
         if form.is_valid():
-            form.save()
+            form.save(commit=False)
+            form.save_m2m()
             return redirect('home')
 
-    context = {'form': form}
+    context = {'form': form,
+               'module': module}
     return render(request, 'module_form.html', context)
 
 
@@ -69,7 +70,7 @@ def delete_module(request, primary_key):
         return redirect('home')
 
     context = {'object': module}
-    return render(request, 'delete.html', context)
+    return render(request, 'delete_module.html', context)
 
 
 @login_required()

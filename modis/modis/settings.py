@@ -36,6 +36,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'crispy_forms',
+    "crispy_bootstrap5",
+
     'base.apps.BaseConfig',
     'accounts.apps.AccountsConfig',
 ]
@@ -132,3 +135,9 @@ LOGIN_REDIRECT_URL = '/'
 # Logout redirect
 
 LOGOUT_REDIRECT_URL = '/accounts/login'
+
+# Forms with crispy
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"

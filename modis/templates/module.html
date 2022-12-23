@@ -78,7 +78,7 @@
                     {% endif %}
                     {% if user.user_type == user.ADMIN or module.lecturer.user == user %}
                         <a class="btn btn-primary" href="{% url 'update-module' module.id %}">Bearbeiten</a>
-                        <a class="btn btn-danger" href="{% url 'delete-module' module.id %}">Löschen</a>
+                        {% include 'delete_module.html' %}
                     {% endif %}
                 </div>
             </div>
