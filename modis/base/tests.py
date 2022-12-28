@@ -30,7 +30,7 @@ class ModuleTest(TestCase):
         self.assertEqual(str(self.module_1), self.module_1.title)
 
     def test_filter_modules_by_credits(self):
-        """True when module_1 is in the result_set and module_2 is not"""
+        """True if module_1 is in the result_set and module_2 is not"""
         result_set = Module.filter_modules_by_credits(5)
         self.assertTrue(self.module_1 in result_set and self.module_2 not in result_set)
 
