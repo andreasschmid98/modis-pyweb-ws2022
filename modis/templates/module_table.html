@@ -27,7 +27,8 @@
                     {% if user.user_type == user.ADMIN or module.lecturer.user == user %}
                         <a class="btn btn-secondary" href="{% url 'update-module' module.id %}">Bearbeiten</a>
                         {% include 'delete_module.html' %}
-                    {% else %}
+                    {% endif %}
+                    {% if user.user_type == user.STUDENT %}
                         {% if module in student.favourites.all or module in favourites %}
                             <a class="btn btn-danger" href="{% url 'toggle-fav' module.id %}">Entfernen</a>
                         {% else %}
