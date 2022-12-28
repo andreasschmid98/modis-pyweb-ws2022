@@ -5,7 +5,7 @@
     <title>modis</title>
 </head>
 <body>
-<a class="btn btn-primary" href="{% url 'delete-module' module.id %}" data-bs-toggle="modal"
+<a class="btn btn-danger" href="{% url 'delete-module' module.id %}" data-bs-toggle="modal"
    data-bs-target="#deleteModuleModal">Löschen</a>
 <div class="modal fade" id="deleteModuleModal" tabindex="-1" aria-labelledby="deleteModuleModalLabel"
      aria-hidden="true">
@@ -22,7 +22,7 @@
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zurück</button>
                 <form method="POST" action="{% url 'delete-module' module.id %}">
                     {% csrf_token %}
-                    <input type="submit" class="btn btn-primary" value="Bestätigen"/>
+                    <input type="submit" class="btn btn-danger" value="Bestätigen"/>
                 </form>
             </div>
         </div>

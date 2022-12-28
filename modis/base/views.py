@@ -111,7 +111,6 @@ def filter(request):
     credits = request.GET.get('credits')
     lecturer = request.GET.get('lecturer')
 
-
     if semester is not None:
         modules = Module.filter_modules_by_semester(semester)
     elif specialisation_track is not None:
@@ -157,8 +156,6 @@ def get_context_for_home(request):
 @login_required()
 def get_student_for_context(request):
     try:
-        student = Student.objects.get(user=request.user)
+        return Student.objects.get(user=request.user)
     except:
-        student = None
-
-        return student
+        return None

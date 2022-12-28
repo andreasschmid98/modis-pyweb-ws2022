@@ -68,8 +68,8 @@ class Module(models.Model):
     @staticmethod
     def sort_modules_by_title(modules, direction):
         if direction == 'desc':
-            return modules.order_by('-title').values()
-        return modules.order_by('title').values()
+            return modules.order_by('-title')
+        return modules.order_by('title')
 
     @staticmethod
     def filter_modules_by_search_query(search_query):
@@ -118,7 +118,7 @@ class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    favourites = models.ManyToManyField(Module, null=True, blank=True)
+    favourites = models.ManyToManyField(Module, blank=True)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'

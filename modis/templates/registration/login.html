@@ -11,15 +11,13 @@
 <form method="post">
     {% csrf_token %}
 
-    <section class="vh-100" style="background-color: #FFAC1C;">
+    <section class="vh-100" style="background: #6c757d">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card shadow-sm" style="border-radius: 1rem;">
                         <div class="card-body p-5 text-center">
-
-                            <h3 class="mb-5">Login</h3>
-
+                            <h3 class="card-title mb-4">modis</h3>
                             <div class="form-outline mb-4">
                                 <input type="text" class="form-control " name="username"
                                        placeholder="Benutzername">
@@ -30,7 +28,7 @@
                                        placeholder="Passwort">
                             </div>
 
-                            <button class="btn btn-primary btn-block" type="submit">Login</button>
+                            <button class="btn btn-secondary btn-block" type="submit">Login</button>
 
                         </div>
                     </div>
