@@ -14,7 +14,7 @@ class UserTest(TestCase):
     def tearDown(self):
         self.user.delete()
 
-    def test_correct(self):
+    def test_correct_user(self):
         """True if username, password and user_type are correct"""
         user = authenticate(username='test_user', password='test_pw')
         self.assertTrue((user is not None) and user.is_authenticated and user.user_type is User.STUDENT)
