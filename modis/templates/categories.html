@@ -1,0 +1,134 @@
+<body>
+<style>
+
+    #all{
+        font-weight: 600;
+    }
+    .btn-toggle {
+        padding: .25rem .5rem;
+        font-weight: 600;
+        background-color: transparent;
+    }
+
+    .btn-toggle:hover,
+    .btn-toggle:focus {
+        background-color: #EBEBEB;;
+    }
+
+    .btn-toggle::before {
+        width: 1.25em;
+        line-height: 0;
+        content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+        transition: transform .35s ease;
+        transform-origin: .5em 50%;
+    }
+
+    .btn
+    .btn-toggle[aria-expanded="true"] {
+        color: rgba(0, 0, 0, .85);
+    }
+
+    .btn-toggle[aria-expanded="true"]::before{
+        transform: rotate(90deg);
+    }
+
+
+    .btn-toggle-nav a {
+        padding: .1875rem .5rem;
+        margin-top: .125rem;
+        margin-left: 1.25rem;
+    }
+
+  .btn:hover    {
+        background-color: #EBEBEB;;
+    }
+    .btn-toggle-nav a:hover,
+    .btn-toggle-nav a:focus {
+        background-color: #EBEBEB;
+    }
+
+</style>
+
+
+<div class="flex-shrink-0 p-3 bg-white"style="width: 310px;">
+    <ul class="nav flex-column ps-0">
+        <li class="nav-item mb-1">
+            <button class="btn d-inline-flex align-items-center rounded border-0">
+                <a id="all" class="link-dark d-inline-flex rounded text-decoration-none" href="{% url 'home' %}">Alle</a>
+            </button>
+        </li>
+        <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#semester-collapse" aria-expanded="true">
+                Semester
+            </button>
+            <div class="collapse" id="semester-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    {% for semester in semesters %}
+                        <li><a href="{% url 'filter' %}?semester={{ semester.type }}"
+                               class="link-dark d-inline-flex text-decoration-none rounded">{{ semester }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </li>
+        <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#grad-collapse" aria-expanded="true">
+                Studiengang
+            </button>
+            <div class="collapse" id="grad-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    {% for program in graduate_programs %}
+                        <li><a href="{% url 'filter' %}?program={{ program }}"
+                               class="link-dark d-inline-flex text-decoration-none rounded">{{ program }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </li>
+        <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#track-collapse" aria-expanded="true">
+                Spezialisierungen
+            </button>
+            <div class="collapse" id="track-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    {% for track in specialisation_tracks %}
+                        <li><a href="{% url 'filter' %}?track={{ track }}"
+                               class="link-dark d-inline-flex text-decoration-none rounded">{{ track }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </li>
+        <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#credit-collapse" aria-expanded="true">
+                Credits
+            </button>
+            <div class="collapse" id="credit-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    {% for credit in credits %}
+                        <li><a href="{% url 'filter' %}?credits={{ credit }}"
+                               class="link-dark d-inline-flex text-decoration-none rounded">{{ credit }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </li>
+        <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#lecturer-collapse" aria-expanded="true">
+                Modulverantwortlicher
+            </button>
+            <div class="collapse" id="lecturer-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    {% for lecturer in lecturers %}
+                        <li><a href="{% url 'filter' %}?lecturer={{ lecturer }}"
+                               class="link-dark d-inline-flex text-decoration-none rounded">{{ lecturer }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </li>
+
+    </ul>
+</div>
+
+</body>

@@ -9,4 +9,6 @@ urlpatterns = [
     path('delete-module/<str:primary_key>/', views.delete_module, name='delete-module'),
     path('fav/<str:module_id>/', views.toggle_favourites, name='toggle-fav'),
     path('favourites/', views.favourites, name='favourites'),
+    path('sort/<str:direction>/', views.sort, name='sort'),
+    path('filter/', views.filter, name='filter'),
 ]

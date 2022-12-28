@@ -1,41 +1,47 @@
 {% extends 'main.html' %}
-
 {% block content %}
-
-<div class="home-container">
-
-    <form action="{% url 'home' %}">
-        <input type="text" name="q" placeholder="Nach Modulen suchen..."/>
-    </form>
-
-    <div>
-        <h5>{{ module_count }} {% if module_count == 1 %} Modul {% else %} Module {% endif %} gefunden.</h5>
-        {% if user.user_type != user.STUDENT  %}
-            <a href ="{% url 'create-module' %}">Modul hinzufügen</a>
-        {% endif %}
-
-    <hr>
-    <div>
-        {% for module in modules %}
-            {% if user.user_type == user.ADMIN or module.lecturer.user == user  %}
-                <a href="{% url 'update-module' module.id %}">Bearbeiten</a>
-                <a href="{% url 'delete-module' module.id %}">Löschen</a>
-            {% endif %}
-            {% if user.user_type == user.STUDENT %}
-                {% if module in student.favourites.all %}
-                    <a href="{% url 'toggle-fav' module.id %}">Entfernen</a>
-                {% else %}
-                    <a href="{% url 'toggle-fav' module.id %}">Hinzufügen</a>
-                {% endif %}
-            {% endif %}
-            <div>
-                <h5>{{ module.id }} --- <a href = "{% url 'module' module.id %}">{{ module.title }} </a></h5>
-                <hr>
+    <div class="container pt-4">
+        <div class="row pb-4">
+            <div class="col-4 justify-content-end">
+                <form class="d-flex" role="search" action="{% url 'home' %}">
+                    <input class="form-control me-2" type="search" name="q" placeholder="Suche" aria-label="Search">
+                </form>
             </div>
-        {% endfor %}
+            <div class="col d-flex justify-content-end">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        Sortieren
+                    </button>
+                    <form action="{% url 'home' %}">
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="{% url 'sort' 'asc' %}">Titel aufsteigend</a></li>
+                            <li><a class="dropdown-item" href="{% url 'sort' 'desc' %}">Titel absteigend</a></li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col">
+                <p class="text-muted">{{ module_count }} {% if module_count == 1 %} Modul {% else %}
+                    Module {% endif %} gefunden.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-auto">
+                {% include 'categories.html' %}
+            </div>
+            {% if module_count >= 1 %}
+                {% include 'module_table.html' %}
+            {% else %}
+                <div class="col justify-content-center">
+                    <div class="alert alert-primary pt-2" role="alert">
+                        <h4 class="alert-heading">Keine Module gefunden</h4>
+                        <p>Es wurden leider keine Module zu diesem Suchbegriff gefunden. Bitte erneut versuchen!</p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
     </div>
-    </div>
-</div>
 {% endblock %}
-
-

@@ -1,15 +1,38 @@
 {% extends 'main.html' %}
 
+
 {% block content %}
-    <h1>Favoriten</h1>
-    <hr>
-    <div>
-        {% for module in favourites %}
-            <div>
-                <h5>{{ module.id }} --- <a href = "{% url 'module' module.id %}">{{ module.title }} </a></h5>
-                <a href="{% url 'toggle-fav' module.id %}">Entfernen</a>
-                <hr>
-            </div>
-        {% endfor %}
+    <style>
+        .card:hover {
+            -webkit-transform: scale(1.05);
+            -moz-transform: scale(1.05);
+            -ms-transform: scale(1.05);
+            -o-transform: scale(1.05);
+            transform: scale(1.05);
+            transition: 0.5s all ease 0s;
+            -webkit-transition: 0.5s all ease 0s;
+            -moz-transition: 0.5s all ease 0s;
+            -ms-transition: 0.5s all ease 0s;
+        }
+    </style>
+
+    <div class="container pt-4">
+        <div class="row gy-4 justify-content-start">
+            {% for module in favourites %}
+                <div class="col-3 justify-content-start">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+
+                            <a class="link-dark text-decoration-none" href="{% url 'module' module.id %}"><h6
+                                    class="card-title text-center text-truncate">{{ module.title }}</h6></a>
+
+                        </div>
+                        <div class="card-footer text-center">
+                            <a class="btn btn-danger" href="{% url 'toggle-fav' module.id %}">Entfernen</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

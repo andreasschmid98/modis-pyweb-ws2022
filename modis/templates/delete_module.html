@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>modis</title>
+</head>
+<body>
+<a class="btn btn-danger" href="{% url 'delete-module' module.id %}" data-bs-toggle="modal"
+   data-bs-target="#deleteModuleModal">Löschen</a>
+<div class="modal fade" id="deleteModuleModal" tabindex="-1" aria-labelledby="deleteModuleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="deleteModuleModalLabel">Löschen</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Soll das Modul wirklich gelöscht werden?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zurück</button>
+                <form method="POST" action="{% url 'delete-module' module.id %}">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-danger" value="Bestätigen"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
