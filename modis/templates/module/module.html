@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+{% extends 'home/main.html' %}
 
 {% block content %}
     <div class="container pt-4">
@@ -15,7 +15,7 @@
                 {% else %}
                     <a class="btn btn-secondary" href="{% url 'update-module' module.id %}">Bearbeiten</a>
                     <p>&ensp;</p>
-                    {% include 'delete_module.html' %}
+                    {% include 'module/delete_module.html' %}
                 {% endif %}
             </div>
         </div>

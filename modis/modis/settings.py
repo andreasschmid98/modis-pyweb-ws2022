@@ -55,12 +55,15 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'modis.urls'
 
-TEMPLATES_DIR = BASE_DIR / 'templates'
+TEMPLATES_DIRS = [BASE_DIR / 'templates',
+                  BASE_DIR / 'templates' / 'home',
+                  BASE_DIR / 'templates' / 'module'
+                  ]
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR],
+        'DIRS': TEMPLATES_DIRS,
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
