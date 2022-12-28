@@ -61,7 +61,7 @@
                     <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
                          data-bs-parent="#accordionDetails">
                         <div class="accordion-body">
-                            {{ module.content }}
+                            {{ module.content|linebreaks }}
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                     <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo"
                          data-bs-parent="#accordionDetails">
                         <div class="accordion-body">
-                            {{ module.learning_objective }}
+                            {{ module.learning_objective|linebreaks}}
                         </div>
                     </div>
                 </div>
