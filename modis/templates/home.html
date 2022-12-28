@@ -4,7 +4,7 @@
         <div class="row pb-4">
             <div class="col-4 justify-content-end">
                 <form class="d-flex" role="search" action="{% url 'home' %}">
-                    <input class="form-control me-2" type="search" name="q" placeholder="Suche" aria-label="Search">
+                    <input class="form-control me-2" type="search" name="q" placeholder="Suche..." aria-label="Search">
                 </form>
             </div>
             <div class="col d-flex justify-content-end">
@@ -36,7 +36,7 @@
                 {% include 'module_table.html' %}
             {% else %}
                 <div class="col justify-content-center">
-                    <div class="alert alert-primary pt-2" role="alert">
+                    <div class="alert alert-warning pt-2" role="alert">
                         <h4 class="alert-heading">Keine Module gefunden</h4>
                         <p>Es wurden leider keine Module zu diesem Suchbegriff gefunden. Bitte erneut versuchen!</p>
                     </div>

@@ -78,11 +78,7 @@ class Module(models.Model):
             Q(content__icontains=search_query) |
             Q(learning_objective__icontains=search_query) |
             Q(lecturer__last_name__icontains=search_query) |
-            Q(lecturer__first_name__icontains=search_query) |
-            Q(semesters__type__icontains=search_query) |
-            Q(graduate_programs__title__icontains=search_query) |
-            Q(specialisation_tracks__title__icontains=search_query) |
-            Q(credits=(int(search_query) if search_query.isdigit() else False))
+            Q(lecturer__first_name__icontains=search_query)
         ).distinct()
 
 
