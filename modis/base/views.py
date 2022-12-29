@@ -99,12 +99,7 @@ def favourites(request):
 @login_required()
 def sort(request, criterion, direction):
     global modules
-
-    if criterion == 'title':
-        modules = Module.sort_modules_by_title(modules, direction)
-    else:
-        modules = Module.sort_modules_by_credits(modules, direction)
-
+    modules = Module.sort_modules(modules, criterion, direction)
     context = get_context_for_home(modules, request)
     return render(request, 'home.html', context)
 

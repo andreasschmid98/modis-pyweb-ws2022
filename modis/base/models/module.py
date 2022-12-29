@@ -32,16 +32,10 @@ class Module(models.Model):
         return self.title
 
     @staticmethod
-    def sort_modules_by_title(modules, direction):
+    def sort_modules(modules, criterion, direction):
         if direction == 'desc':
-            return modules.order_by('-title')
-        return modules.order_by('title')
-
-    @staticmethod
-    def sort_modules_by_credits(modules, direction):
-        if direction == 'desc':
-            return modules.order_by('-credits')
-        return modules.order_by('credits')
+            return modules.order_by(f'-{criterion}')
+        return modules.order_by(criterion)
 
     @staticmethod
     def filter_modules_by_search_query(search_query):
