@@ -97,9 +97,14 @@ def favourites(request):
 
 
 @login_required()
-def sort(request, direction):
+def sort(request, criterion, direction):
     global modules
-    modules = Module.sort_modules_by_title(modules, direction)
+
+    if criterion == 'title':
+        modules = Module.sort_modules_by_title(modules, direction)
+    else:
+        modules = Module.sort_modules_by_credits(modules, direction)
+
     context = get_context_for_home(modules, request)
     return render(request, 'home.html', context)
 

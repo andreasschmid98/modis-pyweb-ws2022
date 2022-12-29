@@ -10,6 +10,6 @@ urlpatterns = [
     path('delete-module/<str:pk>/', views.delete_module, name='delete-module'),
     path('fav/<str:pk>/', views.toggle_favourites, name='toggle-fav'),
     path('favourites/', views.favourites, name='favourites'),
-    path('sort/<str:direction>/', views.sort, name='sort'),
+    path('sort/<str:criterion>/<str:direction>/', views.sort, name='sort'),
     path('filter/', views.filter, name='filter'),
 ]

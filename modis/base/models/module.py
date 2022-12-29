@@ -38,6 +38,12 @@ class Module(models.Model):
         return modules.order_by('title')
 
     @staticmethod
+    def sort_modules_by_credits(modules, direction):
+        if direction == 'desc':
+            return modules.order_by('-credits')
+        return modules.order_by('credits')
+
+    @staticmethod
     def filter_modules_by_search_query(search_query):
         return Module.objects.filter(
             Q(title__icontains=search_query) |

@@ -15,8 +15,10 @@
                     </button>
                     <form action="{% url 'home' %}">
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="{% url 'sort' 'asc' %}">Titel aufsteigend</a></li>
-                            <li><a class="dropdown-item" href="{% url 'sort' 'desc' %}">Titel absteigend</a></li>
+                            <li><a class="dropdown-item" href="{% url 'sort' 'title' 'asc' %}">Titel aufsteigend</a></li>
+                            <li><a class="dropdown-item" href="{% url 'sort' 'title' 'desc' %}">Titel absteigend</a></li>
+                            <li><a class="dropdown-item" href="{% url 'sort' 'credits' 'asc' %}">Credits aufsteigend</a></li>
+                            <li><a class="dropdown-item" href="{% url 'sort' 'credits' 'desc' %}">Credits absteigend</a></li>
                         </ul>
                     </form>
                 </div>
