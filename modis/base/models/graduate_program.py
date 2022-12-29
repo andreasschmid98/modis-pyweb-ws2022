@@ -6,6 +6,9 @@ class GraduateProgram(models.Model):
         BACHELOR = 'Bachelor'
         MASTER = 'Master'
 
+    class Meta:
+        ordering = ['title']
+
     title = models.CharField(max_length=200)
     degree = models.CharField(max_length=20, choices=Degree.choices)
 

@@ -11,7 +11,7 @@ get_student_for_context: Checks if the logged-in user is of type STUDENT.
 def get_context_for_home(modules, request):
     semesters = Semester.objects.all()
     specialisation_tracks = SpecialisationTrack.objects.all()
-    credits = set(Module.objects.values_list('credits', flat=True))
+    credits = sorted(set(Module.objects.values_list('credits', flat=True)))
     lecturers = Lecturer.objects.all()
     student = get_student_for_context(request)
     graduate_programs = GraduateProgram.objects.all()
