@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
-# get the custom user model
+# Get the custom user model
 User = get_user_model()
 
 

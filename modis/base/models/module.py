@@ -8,6 +8,13 @@ from .specialisation_track import SpecialisationTrack
 
 
 class Module(models.Model):
+    """
+    This class represents a Module and is the core class of modis.
+    It is also responsible for filtering and sorting of the Module instances.
+    For more information on the advantages of this, see
+    https://spookylukey.github.io/django-views-the-right-way/thin-views.html#example-push-filtering-to-the-model-layer
+    """
+
     title = models.CharField(max_length=200)
     content = models.TextField(null=True, blank=True)
     learning_objective = models.TextField(null=True, blank=True)

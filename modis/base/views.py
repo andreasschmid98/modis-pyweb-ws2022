@@ -5,7 +5,7 @@ from .forms import ModuleForm
 from .models import Module, Student
 from .utils import get_context_for_home, get_student_for_context
 
-# Store the modules for the views in a global variable
+# Store modules for the views in a global variable
 modules = Module.objects.all()
 
 
@@ -23,7 +23,7 @@ def module(request, pk):
     module = Module.objects.get(id=pk)
     context = {'module': module}
 
-    # Add the logged-in student to the context (only if a user of type STUDENT ist logged in)
+    # Add logged-in student to the context (only if a user of type STUDENT ist logged in)
     student = get_student_for_context(request)
     if student is not None:
         context['student'] = student
@@ -115,7 +115,7 @@ def filter(request):
     credits = request.GET.get('credits')
     lecturer = request.GET.get('lecturer')
 
-    # check if an option is selected
+    # Check if one filter is selected
     if semester is not None:
         modules = Module.filter_modules_by_semester(semester)
     elif specialisation_track is not None:

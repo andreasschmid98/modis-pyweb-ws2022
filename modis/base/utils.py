@@ -1,7 +1,7 @@
 from .models import Module, Student, Semester, SpecialisationTrack, Lecturer, GraduateProgram
 
 """
-This file includes helper functions for the view layer.
+This file includes helper/util functions for the view layer.
 
 get_context_for_home: Combines the process of getting all data for home view.
 get_student_for_context: Checks if the logged-in user is of type STUDENT.

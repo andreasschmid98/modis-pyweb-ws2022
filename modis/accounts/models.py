@@ -3,6 +3,11 @@ from django.db import models
 
 
 class User(AbstractUser):
+    """
+    Custom User model.
+    This adds the field user_type indicating which user type is logged in
+    """
+
     LECTURER = 1
     STUDENT = 2
     ADMIN = 3
@@ -14,5 +19,3 @@ class User(AbstractUser):
     )
 
     user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES)
-
-

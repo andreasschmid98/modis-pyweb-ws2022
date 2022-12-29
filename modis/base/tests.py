@@ -1,11 +1,11 @@
+"""
+This contains some simple unit tests for the following models: Module, Lecturer.
+"""
+
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
 from .models import Lecturer, Module
-
-"""
-This contains some simple unit tests for the following models: Module, Lecturer.
-"""
 
 # Get the custom user model
 User = get_user_model()

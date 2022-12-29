@@ -37,7 +37,7 @@ class ModuleForm(ModelForm):
         if user.user_type != user.ADMIN:
             self.fields.pop('lecturer')
 
-        # initialize custom error messages for required fields
+        # Initialize custom error messages for required fields
         for field in self.fields.values():
             field.error_messages = {'required': 'Dies ist ein Pflichtfeld.'}
 
