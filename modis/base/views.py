@@ -38,7 +38,7 @@ def create_module(request):
     if request.method == 'POST':
         form = ModuleForm(request.POST, user=request.user)
         if form.is_valid():
-            form.save(user=request.user, commit=False)
+            form.save(user=request.user)
             form.save_m2m()
             return redirect('home')
 
