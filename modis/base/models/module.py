@@ -54,7 +54,7 @@ class Module(models.Model):
 
     @staticmethod
     def filter_modules_by_graduate_program(search_query):
-        # split search_query into title and degree
+        # Split search_query into title and degree
         title, degree = search_query.replace('(', '').replace(')', '').rsplit(' ', 1)
         graduate_program = GraduateProgram.objects.filter(title=title, degree=degree)
         return Module.objects.filter(graduate_programs__in=graduate_program)
@@ -70,6 +70,7 @@ class Module(models.Model):
 
     @staticmethod
     def filter_modules_by_lecturer(search_query):
+        # Split search_query into first_name and last_name
         first_name, last_name = search_query.split(' ')
         lecturer = Lecturer.objects.filter(first_name=first_name, last_name=last_name)
         return Module.objects.filter(lecturer__in=lecturer)

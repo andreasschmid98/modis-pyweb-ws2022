@@ -54,7 +54,7 @@ def update_module(request, pk):
     if request.method == 'POST':
         form = ModuleForm(request.POST, instance=module, user=request.user)
         if form.is_valid():
-            form.save(commit=False)
+            form.save()
             form.save_m2m()
             return redirect('home')
 
