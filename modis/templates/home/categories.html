@@ -25,14 +25,22 @@
         transform-origin: .5em 50%;
     }
 
+
     .btn
     .btn-toggle[aria-expanded="true"] {
         color: rgba(0, 0, 0, .85);
     }
 
+
+
     .btn-toggle[aria-expanded="true"]::before {
+        transform: rotate(0deg);
+    }
+
+        .btn-toggle[aria-expanded="false"]::before {
         transform: rotate(90deg);
     }
+
 
 
     .btn-toggle-nav a {
@@ -132,5 +140,6 @@
 
     </ul>
 </div>
+
 
 </body>
