@@ -18,18 +18,23 @@
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card shadow-sm">
-                        <div class="card-body pb-4 px-5 text-center">
+                        <div class="card-body pb-2 px-5 text-center">
                             <h3 class="card-title display-4 mb-4">modis</h3>
                             <h6 class="card-title mb-4">Modul-Informationssystem der Fakultät für Informatik</h6>
                             <div class="form-outline mb-4 px-3">
                                 <input type="text" class="form-control" name="username"
                                        placeholder="Benutzername">
                             </div>
-                            <div class="form-outline mb-4 px-3">
+                            <div class="form-outline mb-2 px-3">
                                 <input type="password" name="password" class="form-control "
                                        placeholder="Passwort">
                             </div>
-                            <button class="btn btn-primary btn-block" type="submit">Login</button>
+                            <button class="btn btn-primary btn-block mt-2" type="submit">Login</button>
+                            {% if form.errors %}
+                                <p class="text-danger mt-2 ">Benutzername oder Passwort falsch. Erneut versuchen!</p>
+                            {% else %}
+                                <p class="mt-2">&ensp;</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
