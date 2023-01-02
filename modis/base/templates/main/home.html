@@ -1,0 +1,55 @@
+{% extends 'main/index.html' %}
+{% block content %}
+    <div class="container pt-4">
+        <div class="row pb-4">
+            <div class="col-4 justify-content-end">
+                <form class="d-flex" role="search" action="{% url 'main' %}">
+                    <input class="form-control me-2" type="search" name="q"
+                           placeholder="Suche in Titel, Inhalt und Lernziele ..." aria-label="Search">
+                </form>
+            </div>
+            <div class="col d-flex justify-content-end">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        Sortieren
+                    </button>
+                    <form action="{% url 'main' %}">
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="{% url 'sort' 'title' 'asc' %}">Titel aufsteigend</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'sort' 'title' 'desc' %}">Titel absteigend</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'sort' 'credits' 'asc' %}">Credits aufsteigend</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'sort' 'credits' 'desc' %}">Credits absteigend</a>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col">
+                <p class="text-muted">{{ module_count }}
+                    {% if module_count == 1 %} Modul
+                    {% else %} Module {% endif %} gefunden.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-auto">
+                {% include 'main/categories.html' %}
+            </div>
+            {% if module_count >= 1 %}
+                {% include 'module/module_table.html' %}
+            {% else %}
+                <div class="col justify-content-center">
+                    <div class="alert alert-warning pt-2" role="alert">
+                        <h4 class="alert-heading">Keine Module gefunden</h4>
+                        <p>Es wurden leider keine Module zu diesem Suchbegriff gefunden. Bitte erneut versuchen!</p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

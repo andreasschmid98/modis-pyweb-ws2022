@@ -1,17 +1,12 @@
-<style>
-    .btn-danger:hover{
-    background-color: #dc3545;
-}
-    .btn-success:hover{
-    background-color: #198754;}
-</style>
 <div class="col justify-content-end">
     <table class="table table-fixed table-bordered table-hover">
         <thead>
         <tr>
-            <th class="text-center" scope="col">Titel</th>
-            <th class="text-center" scope="col">Credits</th>
-            <th class="text-center" scope="col">Aktion</th>
+            <th class="text-center w-50" scope="col">Titel</th>
+            <th class="text-center" scope="col" style="width: 5%">Credits</th>
+            <th class="text-center" scope="col" style="width: 5%">SoSe</th>
+            <th class="text-center" scope="col" style="width: 5%">WiSe</th>
+            <th class="text-center " scope="col" style="width: 20%">Aktion</th>
         </tr>
         </thead>
         <tbody>
@@ -24,9 +19,23 @@
                     {{ module.credits }}
                 </td>
                 <td class="align-middle text-center">
+                    {% for semester in module.semesters.all %}
+                        {% if semester.type == "Sommersemester" %}
+                            x
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td class="align-middle text-center">
+                    {% for semester in module.semesters.all %}
+                        {% if semester.type == "Wintersemester" %}
+                            x
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td class="align-middle text-center">
                     {% if user.user_type == user.ADMIN or module.lecturer.user == user %}
                         <a class="btn btn-secondary" href="{% url 'update-module' module.id %}">Bearbeiten</a>
-                        {% include 'delete_module.html' %}
+                        {% include 'module/delete_module.html' %}
                     {% endif %}
                     {% if user.user_type == user.STUDENT %}
                         {% if module in student.favourites.all or module in favourites %}

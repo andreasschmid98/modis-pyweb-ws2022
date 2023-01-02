@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+{% extends 'main/index.html' %}
 
 {% block content %}
     <div class="container pt-4">
@@ -15,7 +15,7 @@
                 {% else %}
                     <a class="btn btn-secondary" href="{% url 'update-module' module.id %}">Bearbeiten</a>
                     <p>&ensp;</p>
-                    {% include 'delete_module.html' %}
+                    {% include 'module/delete_module.html' %}
                 {% endif %}
             </div>
         </div>
@@ -34,7 +34,6 @@
             <dd class="col-sm-10">{{ module.credits }}</dd>
 
             <dt class="col-sm-2">Studiengang</dt>
-
             <dd class="col-sm-10">
                 {% for graduate_program in module.graduate_programs.all %}
                     {{ graduate_program }} <br>
@@ -42,13 +41,13 @@
             </dd>
 
             <dt class="col-sm-2">Vertiefungsanrechnung</dt>
-
             <dd class="col-sm-10">
                 {% for specialisation_track in module.specialisation_tracks.all %}
                     {{ specialisation_track }} <br/>
                 {% endfor %}
             </dd>
         </dl>
+
         <div class="row">
             <div class="accordion" id="accordionDetails">
                 <div class="accordion-item">
@@ -61,7 +60,7 @@
                     <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
                          data-bs-parent="#accordionDetails">
                         <div class="accordion-body">
-                            {{ module.content }}
+                            {{ module.content|linebreaks }}
                         </div>
                     </div>
                 </div>
@@ -75,17 +74,11 @@
                     <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo"
                          data-bs-parent="#accordionDetails">
                         <div class="accordion-body">
-                            {{ module.learning_objective }}
+                            {{ module.learning_objective|linebreaks }}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
-    </div>
-
 {% endblock %}
