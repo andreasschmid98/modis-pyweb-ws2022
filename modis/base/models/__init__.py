@@ -1,5 +1,5 @@
 """
-This splits the models declaration into several python files.
+This splits the models declarations into several python files.
 It increases their readability.
 """
 

@@ -10,7 +10,7 @@ from .specialisation_track import SpecialisationTrack
 class Module(models.Model):
     """
     This class represents a Module and is the core class of modis.
-    It is also responsible for filtering and sorting of the Module instances.
+    It also is responsible for filtering and sorting of the Module instances.
     For more information on the advantages of this, see
     https://spookylukey.github.io/django-views-the-right-way/thin-views.html#example-push-filtering-to-the-model-layer
     """
@@ -42,9 +42,7 @@ class Module(models.Model):
         return Module.objects.filter(
             Q(title__icontains=search_query) |
             Q(content__icontains=search_query) |
-            Q(learning_objective__icontains=search_query) |
-            Q(lecturer__last_name__icontains=search_query) |
-            Q(lecturer__first_name__icontains=search_query)
+            Q(learning_objective__icontains=search_query)
         ).distinct()
 
     @staticmethod

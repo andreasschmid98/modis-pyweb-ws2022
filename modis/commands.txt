@@ -1,0 +1,2 @@
+Create ER Diagram for the data models:
+"py manage.py graph_models --pydot -a -g -o ER_diagram_data_models.png"

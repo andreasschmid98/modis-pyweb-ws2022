@@ -15,7 +15,7 @@ def home(request):
     search_query = request.GET.get('q') if request.GET.get('q') is not None else ''
     modules = Module.filter_modules_by_search_query(search_query)
     context = get_context_for_home(modules, request)
-    return render(request, 'home.html', context)
+    return render(request, 'main/home.html', context)
 
 
 @login_required
@@ -23,12 +23,12 @@ def module(request, pk):
     module = Module.objects.get(id=pk)
     context = {'module': module}
 
-    # Add logged-in student to the context (only if a user of type STUDENT ist logged in)
+    # Add logged-in student to the context (only if a user of type STUDENT is logged in)
     student = get_student_for_context(request)
     if student is not None:
         context['student'] = student
 
-    return render(request, 'module.html', context)
+    return render(request, 'module/module.html', context)
 
 
 @login_required
@@ -40,10 +40,10 @@ def create_module(request):
         if form.is_valid():
             form.save(user=request.user)
             form.save_m2m()
-            return redirect('home')
+            return redirect('main')
 
     context = {'form': form}
-    return render(request, 'module_form.html', context)
+    return render(request, 'module/module_form.html', context)
 
 
 @login_required
@@ -56,11 +56,11 @@ def update_module(request, pk):
         if form.is_valid():
             form.save()
             form.save_m2m()
-            return redirect('home')
+            return redirect('main')
 
     context = {'form': form,
                'module': module}
-    return render(request, 'module_form.html', context)
+    return render(request, 'module/module_form.html', context)
 
 
 @login_required
@@ -69,10 +69,10 @@ def delete_module(request, pk):
 
     if request.method == 'POST':
         module.delete()
-        return redirect('home')
+        return redirect('main')
 
     context = {'object': module}
-    return render(request, 'delete_module.html', context)
+    return render(request, 'module/delete_module.html', context)
 
 
 @login_required()
@@ -93,7 +93,7 @@ def toggle_favourites(request, pk):
 def favourites(request):
     favourites = Student.objects.get(user=request.user).favourites.all()
     context = {'favourites': favourites}
-    return render(request, 'favourites.html', context)
+    return render(request, 'main/favourites.html', context)
 
 
 @login_required()
@@ -101,7 +101,7 @@ def sort(request, criterion, direction):
     global modules
     modules = Module.sort_modules(modules, criterion, direction)
     context = get_context_for_home(modules, request)
-    return render(request, 'home.html', context)
+    return render(request, 'main/home.html', context)
 
 
 @login_required()
@@ -115,7 +115,7 @@ def filter(request):
     credits = request.GET.get('credits')
     lecturer = request.GET.get('lecturer')
 
-    # Check if one filter is selected
+    # Check if a filter is selected
     if semester is not None:
         modules = Module.filter_modules_by_semester(semester)
     elif specialisation_track is not None:
@@ -130,4 +130,4 @@ def filter(request):
         modules = None
 
     context = get_context_for_home(modules, request)
-    return render(request, 'home.html', context)
+    return render(request, 'main/home.html', context)

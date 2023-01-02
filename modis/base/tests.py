@@ -1,5 +1,5 @@
 """
-This contains some simple unit tests for the following models: Module, Lecturer.
+This contains simple unit tests for the following models: Module, Lecturer.
 """
 
 from django.contrib.auth import get_user_model

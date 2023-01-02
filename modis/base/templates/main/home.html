@@ -1,31 +1,29 @@
-{% extends 'home/main.html' %}
+{% extends 'main/index.html' %}
 {% block content %}
-    <style>
-        #sort-btn:hover{
-            background-color: #495057;
-        }
-
-    </style>
-
     <div class="container pt-4">
         <div class="row pb-4">
             <div class="col-4 justify-content-end">
-                <form class="d-flex" role="search" action="{% url 'home' %}">
-                    <input class="form-control me-2" type="search" name="q" placeholder="Suche..." aria-label="Search">
+                <form class="d-flex" role="search" action="{% url 'main' %}">
+                    <input class="form-control me-2" type="search" name="q"
+                           placeholder="Suche in Titel, Inhalt und Lernziele ..." aria-label="Search">
                 </form>
             </div>
             <div class="col d-flex justify-content-end">
                 <div class="dropdown">
-                    <button id="sort-btn" class="btn btn-secondary dropdown-toggle" type="button"
+                    <button class="btn btn-secondary dropdown-toggle" type="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                         Sortieren
                     </button>
-                    <form action="{% url 'home' %}">
+                    <form action="{% url 'main' %}">
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="{% url 'sort' 'title' 'asc' %}">Titel aufsteigend</a></li>
-                            <li><a class="dropdown-item" href="{% url 'sort' 'title' 'desc' %}">Titel absteigend</a></li>
-                            <li><a class="dropdown-item" href="{% url 'sort' 'credits' 'asc' %}">Credits aufsteigend</a></li>
-                            <li><a class="dropdown-item" href="{% url 'sort' 'credits' 'desc' %}">Credits absteigend</a></li>
+                            <li><a class="dropdown-item" href="{% url 'sort' 'title' 'asc' %}">Titel aufsteigend</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'sort' 'title' 'desc' %}">Titel absteigend</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'sort' 'credits' 'asc' %}">Credits aufsteigend</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'sort' 'credits' 'desc' %}">Credits absteigend</a>
+                            </li>
                         </ul>
                     </form>
                 </div>
@@ -33,13 +31,14 @@
         </div>
         <div class="row pb-2">
             <div class="col">
-                <p class="text-muted">{{ module_count }} {% if module_count == 1 %} Modul {% else %}
-                    Module {% endif %} gefunden.</p>
+                <p class="text-muted">{{ module_count }}
+                    {% if module_count == 1 %} Modul
+                    {% else %} Module {% endif %} gefunden.</p>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-auto">
-                {% include 'home/categories.html' %}
+                {% include 'main/categories.html' %}
             </div>
             {% if module_count >= 1 %}
                 {% include 'module/module_table.html' %}

@@ -7,7 +7,7 @@ User = get_user_model()
 
 class UserTest(TestCase):
     """
-    This tests simple authentication functionality for the custom user model.
+    This tests the authentication functionality for the custom user model.
     """
 
     def setUp(self):
