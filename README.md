@@ -20,7 +20,6 @@ administrators the possibility to edit module information as well as to add and 
 
 * username: lecturer_test
 * password: ModisWS2022!
-<br>
 * username: lecturer_test_2
 * password: ModisWS2022!
 
