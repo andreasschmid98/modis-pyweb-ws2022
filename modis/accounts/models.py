@@ -4,8 +4,8 @@ from django.db import models
 
 class User(AbstractUser):
     """
-    Custom User model.
-    This adds the field user_type indicating which user type is logged in
+    Custom user model.
+    This adds the field user_type indicating which user type is logged in.
     """
 
     LECTURER = 1
@@ -19,3 +19,4 @@ class User(AbstractUser):
     )
 
     user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES)
+
