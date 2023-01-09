@@ -20,7 +20,7 @@ class UserTest(TestCase):
     def test_correct_user(self):
         # True if username, password and user_type are correct
         user = authenticate(username='test_user', password='test_pw')
-        self.assertTrue((user is not None) and user.is_authenticated and user.user_type is User.STUDENT)
+        self.assertTrue(user is not None and user.is_authenticated and user.user_type is User.STUDENT)
 
     def test_wrong_username(self):
         user = authenticate(username='wrong', password='test_pw')
