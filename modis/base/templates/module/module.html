@@ -12,7 +12,8 @@
                         <a class="btn btn-success"
                            href="{% url 'toggle-fav' module.id %}">Hinzufügen</a>
                     {% endif %}
-                {% else %}
+                {% endif %}
+                {% if user.user_type == user.ADMIN or module.lecturer.user == user %}
                     <a class="btn btn-secondary" href="{% url 'update-module' module.id %}">Bearbeiten</a>
                     <p>&ensp;</p>
                     {% include 'module/delete_module.html' %}
