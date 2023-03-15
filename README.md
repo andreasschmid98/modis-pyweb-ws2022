@@ -9,6 +9,17 @@ Basically, modis pursues the goal of simplifying and accelerating the process of
 bundling all module information on one website for students to access. In addition, modis gives lecturers and
 administrators the possibility to edit module information as well as to add and delete modules.
 
+## Preview
+
+<img width="1128" alt="login" src="https://user-images.githubusercontent.com/81109321/225359753-e777a3f8-b6ac-4539-ad85-dee9c9f2347b.png">
+
+<img width="1128" alt="home" src="https://user-images.githubusercontent.com/81109321/225360233-a37b03da-efd7-4b9a-8ce0-d40020744c93.png">
+
+<img width="1128" alt="fav" src="https://user-images.githubusercontent.com/81109321/225360968-95be90ce-05cb-45c9-8a17-20761d8047f7.png">
+
+<img width="1128" alt="module" src="https://user-images.githubusercontent.com/81109321/225361280-95d385f2-a2ed-4c79-908d-491088626d09.png">
+
+
 ## Installation guide
 
 To start modis, the following GitHub repository must be cloned:
