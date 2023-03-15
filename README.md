@@ -11,14 +11,7 @@ administrators the possibility to edit module information as well as to add and 
 
 ## Preview
 
-<img width="113" height="60" alt="login" src="https://user-images.githubusercontent.com/81109321/225359753-e777a3f8-b6ac-4539-ad85-dee9c9f2347b.png">
-
-<img width="1128" alt="home" src="https://user-images.githubusercontent.com/81109321/225360233-a37b03da-efd7-4b9a-8ce0-d40020744c93.png">
-
-<img width="1128" alt="fav" src="https://user-images.githubusercontent.com/81109321/225360968-95be90ce-05cb-45c9-8a17-20761d8047f7.png">
-
-<img width="1128" alt="module" src="https://user-images.githubusercontent.com/81109321/225361280-95d385f2-a2ed-4c79-908d-491088626d09.png">
-
+<img src="https://user-images.githubusercontent.com/81109321/225366440-8c1a37a6-6216-4c95-a5bd-90c20ccd6975.png" width="45%"></img> <img src="https://user-images.githubusercontent.com/81109321/225373767-2d807a17-edfc-4fec-85d1-ad78fadc85b2.png" width="45%"></img> <img src="https://user-images.githubusercontent.com/81109321/225372741-f7a02797-9e88-4fc7-89aa-c0c19cf7d3b3.png" width="45%"></img> <img src="https://user-images.githubusercontent.com/81109321/225369200-82075c73-418b-4ca7-9338-b4ea939847e1.png" width="45%"></img> <img src="https://user-images.githubusercontent.com/81109321/225374439-7b32da44-c072-42ff-acc3-b188041dca91.png" width="45%"></img> <img src="https://user-images.githubusercontent.com/81109321/225374252-1c0e1fb0-b9d1-4f6b-ad81-52d2e3092604.png" width="45%"></img> 
 
 ## Installation guide
 
