@@ -11,7 +11,7 @@ administrators the possibility to edit module information as well as to add and 
 
 ## Preview
 
-<img width="1128" alt="login" src="https://user-images.githubusercontent.com/81109321/225359753-e777a3f8-b6ac-4539-ad85-dee9c9f2347b.png">
+<img width="113" height="60" alt="login" src="https://user-images.githubusercontent.com/81109321/225359753-e777a3f8-b6ac-4539-ad85-dee9c9f2347b.png">
 
 <img width="1128" alt="home" src="https://user-images.githubusercontent.com/81109321/225360233-a37b03da-efd7-4b9a-8ce0-d40020744c93.png">
 
